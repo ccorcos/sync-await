@@ -1,4 +1,4 @@
-# TypeScript Library Boilerplate
+# Sync Await
 
 ## Getting Started
 
