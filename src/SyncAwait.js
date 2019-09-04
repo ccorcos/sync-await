@@ -135,6 +135,20 @@ var __generator = function(thisArg, body) {
 	}
 }
 
+function runSync(promise) {
+	let syncResult
+	let resolved = false
+	promise.then(result => {
+		syncResult = result
+		resolved = true
+	})
+	if (!resolved) {
+		throw new Error("Promise did not resolve synchronously")
+	}
+	return syncResult
+}
+
 exports.__awaiter = __awaiter
 exports.__generator = __generator
 exports.SyncPromise = SyncPromise
+exports.runSync = runSync

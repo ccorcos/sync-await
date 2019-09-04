@@ -3,15 +3,7 @@ import { assert, describe, it } from "./mocha"
 
 // __awaiter, __generator need to be in the namespace to override async/await logic
 // injected by Typescript.
-const { __awaiter, __generator, SyncPromise } = SyncAwait
-
-function runSync<T>(promise: Promise<T>): T | undefined {
-	let syncResult: T | undefined
-	promise.then(result => {
-		syncResult = result
-	})
-	return syncResult
-}
+const { __awaiter, __generator, SyncPromise, runSync } = SyncAwait
 
 describe("SyncPromise", () => {
 	it("works async", () => {
@@ -22,9 +14,7 @@ describe("SyncPromise", () => {
 			) as any)
 			return result
 		}
-
-		const syncResult = runSync(f())
-		assert.equal(syncResult, undefined)
+		assert.throws(() => runSync(f()))
 	})
 
 	it("works sync", () => {
